@@ -8,7 +8,6 @@ const NavStyled = styled.nav`
     height: ${(props) => props.height || "3rem"};
 
     color: ${(props) => props.color || props.theme.colors.secondary};
-    margin-bottom: ${(props) => props.marginBotton || "2rem"};
     background: ${(props) => props.bgColor || props.theme.colors.accent};
     display: flex;
     flex-direction: row;

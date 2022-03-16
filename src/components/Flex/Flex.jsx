@@ -7,6 +7,8 @@ const FlexStyled = styled.div`
     align-items: ${(props) => props.align || "stretch"};
     margin: ${(props) => props.margin || "0"};
     height: ${(props) => props.height || "auto"};
+    background-color: ${(props) => props.bgColor || "none"};
+    gap: ${(props) => props.distanse || "auto"};
 `;
 
 const Flex = (props) => {

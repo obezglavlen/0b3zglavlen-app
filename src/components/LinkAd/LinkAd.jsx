@@ -14,6 +14,8 @@ const LinkAdStyled = styled.fieldset`
     padding: 0.2rem 0.5rem 0.5rem 0.5rem;
     border: solid 1px ${(props) => props.color || props.theme.colors.secondary};
     border-radius: 2px;
+    background-color: ${(props) =>
+        props.bgColor || props.theme.colors.primary};
 `;
 
 const LinkAd = (props) => {
