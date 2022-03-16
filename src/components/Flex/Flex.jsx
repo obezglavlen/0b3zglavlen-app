@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const FlexStyled = styled.div`
     display: flex;
-    flex-direction: ${({ direction }) => direction || "column"};
-    justify-content: ${({ justify }) => justify || "stretch"};
+    flex-direction: ${(props) => props.direction || "column"};
+    justify-content: ${(props) => props.justify || "stretch"};
     align-items: ${(props) => props.align || "stretch"};
-    margin: ${({ margin }) => margin || "0"};
-    height: ${({ height }) => height || "auto"};
+    margin: ${(props) => props.margin || "0"};
+    height: ${(props) => props.height || "auto"};
 `;
 
 const Flex = (props) => {

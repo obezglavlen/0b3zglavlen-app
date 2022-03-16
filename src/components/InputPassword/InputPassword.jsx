@@ -2,15 +2,15 @@ import { forwardRef } from "react";
 import styled from "styled-components";
 
 const PasswordStyled = styled.textarea`
-    color: ${({ color, theme: { colors } }) => color || colors.secondary};
-    background: ${({ bg, theme: { colors } }) => bg || colors.accent};
+    color: ${(props) => props.color || props.theme.colors.secondary};
+    background: ${(props) => props.bg || props.theme.colors.accent};
     width: min(28rem, 80%);
-    height: ${({ height }) => height || "auto"};
-    -webkit-text-security: ${({ type }) =>
-        type === "password" ? "disc" : "none"};
+    height: ${(props) => props.height || "auto"};
+    -webkit-text-security: ${(props) =>
+        props.type === "password" ? "disc" : "none"};
     resize: none;
     font-size: 28px;
-    margin: ${({ margin }) => margin || 0};
+    margin: ${(props) => props.margin || 0};
 
     @media ${(props) => props.theme.breakPoints.phone} {
         font-size: 22px;

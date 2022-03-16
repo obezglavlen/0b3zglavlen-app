@@ -66,32 +66,6 @@ const Hashing = () => {
                 />
                 <CopyButton onClick={handleCopy}>📑</CopyButton>
             </Flex>
-            <LinkAd>
-                <LinkAd.Header color="orange">Social Links</LinkAd.Header>
-                <LinkAd.Item
-                    color="#F0F6FC"
-                    href="https://github.com/obezglavlen"
-                    img="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    bg="white"
-                    radius="50%"
-                >
-                    Github
-                </LinkAd.Item>
-                <LinkAd.Item
-                    color="#2aa2de"
-                    href="https://t.me/obezglavlen"
-                    img="https://hashtelegraph.com/wp-content/uploads/2018/01/Logo1.png"
-                >
-                    Telegram
-                </LinkAd.Item>
-                <LinkAd.Item
-                    color="#b1361e"
-                    href="https://www.codewars.com/users/obezglavlen"
-                    img="https://docs.codewars.com/logo.svg"
-                >
-                    Codewars
-                </LinkAd.Item>
-            </LinkAd>
         </>
     );
 };
