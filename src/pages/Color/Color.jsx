@@ -54,25 +54,15 @@ const Color = () => {
     };
 
     return (
-        <Flex
-            align="center"
-            justify="center"
-            height="100%"
-            bgColor={color}
-            distanse="1rem"
-        >
-            <Text color={invertColor(color)} onClick={copy}>
-                {color}
-            </Text>
-            <Button
-                outLined
-                outLineColor="#F54021"
-                border="2px"
-                onClick={changeColor}
-                color={color}
-            >
-                Click me
-            </Button>
+        <Flex align="center" justify="center" height="100%" distanse="1rem">
+            <iframe
+                title="color"
+                src="https://colorpicker.me#container"
+                seamless
+                height="100%"
+                width="100%"
+                style={{ border: "none" }}
+            />
         </Flex>
     );
 };
