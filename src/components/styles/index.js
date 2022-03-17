@@ -8,6 +8,8 @@ import LinkAdHeaderStyled from "./LinkAd.header.styled";
 import { NavListStyled, NavItemStyled } from "./Nav.list.styled";
 import NavStyled from "./Nav.styled";
 import SelectStyled from "./Select.styled";
+import HeaderStyled from "./Header.styled";
+import IFrameStyled from "./IFrame.styled";
 
 export {
     ButtonStyled,
@@ -22,4 +24,6 @@ export {
     NavItemStyled,
     NavStyled,
     SelectStyled,
+    HeaderStyled,
+    IFrameStyled,
 };
