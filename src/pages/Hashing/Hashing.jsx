@@ -59,7 +59,7 @@ const Hashing = () => {
 
   return (
     <>
-      <Flex align="center" justify="center" height="100%">
+      <Flex align="center" justify="center" height="100vh">
         <Select
           options={Object.values(passwordLength)}
           ref={selectRef}

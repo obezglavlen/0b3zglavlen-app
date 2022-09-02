@@ -1,7 +1,7 @@
-import { FlexStyled } from "../styles";
+import { FlexStyled } from "../styles"; 
 
 const Flex = (props) => {
-    return <FlexStyled {...props} />;
+  return <FlexStyled {...props} />;
 };
 
 export default Flex;

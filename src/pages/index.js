@@ -1,3 +1,2 @@
-import Hashing from "./Hashing";
-
-export { Hashing };
+export { default as NotFound } from "./404";
+export { default as Hashing } from "./Hashing";

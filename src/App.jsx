@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Flex, Nav, LinkAd } from "./components";
-import { Hashing } from "./pages";
+import { Hashing, NotFound } from "./pages";
 import Themes from "./themes.config";
 
 const GlobalStyle = createGlobalStyle`
@@ -63,6 +63,7 @@ const App = () => {
               </Nav.List>
             </Nav>
             <Routes>
+              <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Navigate to="/hash" />} />
               <Route path="/hash" element={<Hashing />} />
             </Routes>
