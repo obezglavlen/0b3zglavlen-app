@@ -4,70 +4,100 @@ import Flex from "../../components/Flex";
 import { shake_256, sha3_256, keccak256 } from "js-sha3";
 import Select from "../../components/Select";
 import CopyButton from "../../components/CopyButton";
-import LinkAd from "../../components/LinkAd";
+import CheckBox from "../../components/CheckBox";
+
+const passwordLength = {
+  small: 8,
+  normal: 12,
+  big: 16,
+};
 
 const Hashing = () => {
-    const [selected, setSelected] = useState("shake 256");
-    const hashTypeRef = useRef("sha 256");
-    const inputPassRef = useRef();
-    const outputPassRef = useRef();
+  const inputPassRef = useRef();
+  const outputPassRef = useRef();
+  const selectRef = useRef();
+  const isLeadingEnabledRef = useRef();
+  const isSpecialsEnabledRef = useRef();
 
-    const handleWrite = () => {
-        const hashType = hashTypeRef.current.value;
-        const inputPass = inputPassRef.current.value;
+  const handleWrite = () => {
+    const passwordL = Number(selectRef.current.value);
+    const inputPass = inputPassRef.current.value;
+    const isLeadingEnabled = isLeadingEnabledRef.current.checked;
+    const isSpecialsEnabled = isSpecialsEnabledRef.current.checked;
 
-        if (inputPass === "") {
-            outputPassRef.current.value = "";
-            return;
-        }
+    if (inputPass === "") {
+      outputPassRef.current.value = "";
+      return;
+    }
 
-        switch (hashType) {
-            case "shake 256":
-                outputPassRef.current.value = shake_256(inputPass, 64);
-                break;
-            case "sha3 256":
-                outputPassRef.current.value = sha3_256(inputPass);
-                break;
-            case "keccak 256":
-                outputPassRef.current.value = keccak256(inputPass);
-                break;
-            default:
-                outputPassRef.current.value = "";
-                break;
-        }
-    };
+    let resultHash = shake_256(inputPass, passwordL * 4).split("");
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(outputPassRef.current.value);
-    };
+    if (isLeadingEnabled) {
+      if (passwordL === passwordLength.big) {
+        isSpecialsEnabled
+          ? (resultHash[resultHash.length - 2] = "A")
+          : (resultHash[resultHash.length - 1] = "A");
+      } else {
+        resultHash.push("A");
+      }
+    }
 
-    return (
-        <>
-            <Flex align="center" justify="center" height="100%">
-                <Select
-                    options={["shake 256", "sha3 256", "keccak 256"]}
-                    setter={setSelected}
-                    ref={hashTypeRef}
-                    onChange={handleWrite}
-                />
-                <PasswordArea
-                    margin="60px 0 0 0"
-                    ref={inputPassRef}
-                    onChange={handleWrite}
-                    type="password"
-                    autoFocus
-                    rows={1}
-                />
-                <PasswordArea
-                    margin="10px"
-                    readOnly
-                    ref={outputPassRef}
-                    height="8rem"
-                />
-                <CopyButton onClick={handleCopy}>📑</CopyButton>
-            </Flex>
-        </>
-    );
+    if (isSpecialsEnabled) {
+      if (passwordL === passwordLength.big) {
+        resultHash[resultHash.length - 1] = ".";
+      } else {
+        resultHash.push(".");
+      }
+    }
+
+    outputPassRef.current.value = resultHash.join("");
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(outputPassRef.current.value);
+  };
+
+  return (
+    <>
+      <Flex align="center" justify="center" height="100%">
+        <Select
+          options={Object.values(passwordLength)}
+          ref={selectRef}
+          onChange={handleWrite}
+          Default={1}
+        />
+        <Flex align="left" justify="center" gap="10px">
+          <CheckBox
+            id="leading"
+            title="Enable leading letters?"
+            ref={isLeadingEnabledRef}
+            onChange={handleWrite}
+          />
+          <CheckBox
+            id="specials"
+            title="Enable special symbols?"
+            ref={isSpecialsEnabledRef}
+            onChange={handleWrite}
+          />
+        </Flex>
+        <PasswordArea
+          margin="20px 0 0 0"
+          ref={inputPassRef}
+          onChange={handleWrite}
+          type="password"
+          autoFocus
+          rows={1}
+        />
+        <PasswordArea
+          margin="10px"
+          readOnly
+          ref={outputPassRef}
+          height="8rem"
+        />
+        <CopyButton onClick={handleCopy}>📑</CopyButton>
+      </Flex>
+    </>
+  );
 };
 
 export default Hashing;
